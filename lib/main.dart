@@ -55,19 +55,25 @@ class _HomePageState extends State<HomePage> {
         child: BlocBuilder<MainCubit, MainState>(
           builder: (context, state) {
             if (state is Loading) {
-              print("state is loading");
               return const CircularProgressIndicator();
             } else if (state is Loaded) {
-              print("state is loaded");
               final movie = state.movie;
-              return Column(
-                children: [
-                  Text("Title : ${movie.elementAt(0).title}"),
-                  Text("backdrop : ${movie.elementAt(0).poster}")
-                ],
-              );
+              return ListView.builder(
+                  itemCount: movie.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Text("Title : ${movie.elementAt(index).title}"),
+                        SizedBox(
+                          width: 180,
+                          height: 180,
+                          child: Image.network(
+                              "https://image.tmdb.org/t/p/w500/${movie.elementAt(index).poster}"),
+                        )
+                      ],
+                    );
+                  });
             } else {
-              print("state is error");
               return const Text("Error");
             }
           },
