@@ -3,7 +3,7 @@ import 'package:flutter_news_app_playground/domain/entities/movie.dart';
 
 class MovieMapper {
   Movie mapToDomain(MovieResponse model) {
-    return Movie(id: model.id, title: model.title);
+    return Movie(id: model.id, title: model.title, poster: model.posterPath);
   }
 
   List<Movie> mapToListDomain(List<MovieResponse> listModel) {

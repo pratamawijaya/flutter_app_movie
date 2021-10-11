@@ -5,11 +5,15 @@ import 'package:flutter_news_app_playground/data/datasources/remote/services/dio
 import 'package:flutter_news_app_playground/data/repositories/movie_db_repository_impl.dart';
 import 'package:flutter_news_app_playground/domain/repositories/movie_db_repository.dart';
 import 'package:flutter_news_app_playground/domain/usecases/get_now_playing.dart';
+import 'package:flutter_news_app_playground/main_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  // cubit
+  sl.registerFactory(() => MainCubit(sl()));
+
   // mapper
   sl.registerLazySingleton(() => MovieMapper());
 
