@@ -11,6 +11,7 @@ class GetNowPlayingMovie extends UseCase<List<Movie>, NoParams> {
 
   @override
   Future<Either<Failure, List<Movie>>> call(NoParams params) {
+    print("get now playing usecase");
     return _movieDbRepository.getNowPlayingMovie();
   }
 }

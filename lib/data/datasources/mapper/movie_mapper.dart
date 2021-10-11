@@ -3,13 +3,14 @@ import 'package:flutter_news_app_playground/domain/entities/movie.dart';
 
 class MovieMapper {
   Movie mapToDomain(MovieResponse model) {
-    return Movie(id: model.id, title: model.title, poster: model.posterPath);
+    return Movie(
+        id: model.id ?? 0,
+        title: model.title ?? "",
+        poster: model.posterPath ?? "");
   }
 
   List<Movie> mapToListDomain(List<MovieResponse> listModel) {
-    List<Movie> list = <Movie>[];
-    listModel.map((e) => list.add(mapToDomain(e)));
-    return list;
+    return listModel.map<Movie>((e) => mapToDomain(e)).toList();
   }
 
   MovieResponse mapToModel(Movie model) {

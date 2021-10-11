@@ -23,7 +23,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: BlocProvider(
+        create: (context) => sl.get<MainCubit>(),
+        child: const HomePage(),
+      ),
     );
   }
 }
@@ -44,30 +47,30 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl.get<MainCubit>(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Testing"),
-        ),
-        body: Center(
-          child: BlocBuilder<MainCubit, MainState>(
-            builder: (context, state) {
-              if (state is Loading) {
-                return const CircularProgressIndicator();
-              } else if (state is Loaded) {
-                final movie = state.movie;
-                return Column(
-                  children: [
-                    Text("Title : ${movie.elementAt(0).title}"),
-                    Text("backdrop : ${movie.elementAt(0).poster}")
-                  ],
-                );
-              } else {
-                return const Text("");
-              }
-            },
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Testing"),
+      ),
+      body: Center(
+        child: BlocBuilder<MainCubit, MainState>(
+          builder: (context, state) {
+            if (state is Loading) {
+              print("state is loading");
+              return const CircularProgressIndicator();
+            } else if (state is Loaded) {
+              print("state is loaded");
+              final movie = state.movie;
+              return Column(
+                children: [
+                  Text("Title : ${movie.elementAt(0).title}"),
+                  Text("backdrop : ${movie.elementAt(0).poster}")
+                ],
+              );
+            } else {
+              print("state is error");
+              return const Text("Error");
+            }
+          },
         ),
       ),
     );

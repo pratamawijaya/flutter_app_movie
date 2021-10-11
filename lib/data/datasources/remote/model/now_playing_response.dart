@@ -5,12 +5,12 @@ part 'now_playing_response.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class NowPlayingResponse {
-  final int page;
+  final int? page;
   @JsonKey(name: 'total_pages')
-  final int totalPages;
-  @JsonKey(name: 'total_result')
-  final int totalResult;
-  final List<MovieResponse> results;
+  final int? totalPages;
+  @JsonKey(name: 'total_results')
+  final int? totalResult;
+  final List<MovieResponse>? results;
 
   NowPlayingResponse(
       {required this.page,

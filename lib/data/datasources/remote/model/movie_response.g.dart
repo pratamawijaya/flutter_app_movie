@@ -8,11 +8,11 @@ part of 'movie_response.dart';
 
 MovieResponse _$MovieResponseFromJson(Map<String, dynamic> json) =>
     MovieResponse(
-      backdropPath: json['backdrop_path'] as String,
-      id: json['id'] as int,
-      title: json['title'] as String,
-      posterPath: json['poster_path'] as String,
-      overview: json['overview'] as String,
+      backdropPath: json['backdrop_path'] as String?,
+      id: json['id'] as int?,
+      title: json['title'] as String?,
+      posterPath: json['poster_path'] as String?,
+      overview: json['overview'] as String?,
     );
 
 Map<String, dynamic> _$MovieResponseToJson(MovieResponse instance) =>

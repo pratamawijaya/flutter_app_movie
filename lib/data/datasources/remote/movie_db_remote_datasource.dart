@@ -17,6 +17,8 @@ class MovieDbRemoteDatasourceImpl implements MovieDbRemoteDatasource {
     var response = await _httpClient.getRequest(NewsApi.NOW_PLAYING);
     if (response.statusCode == 200) {
       NowPlayingResponse result = NowPlayingResponse.fromJson(response.data);
+      var len = result.results!.length;
+      print("result remote $len");
       return result;
     } else {
       throw ServerException(response.statusMessage);

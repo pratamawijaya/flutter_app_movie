@@ -5,12 +5,12 @@ part 'movie_response.g.dart';
 @JsonSerializable()
 class MovieResponse {
   @JsonKey(name: 'backdrop_path')
-  final String backdropPath;
-  final int id;
-  final String title;
+  final String? backdropPath;
+  final int? id;
+  final String? title;
   @JsonKey(name: 'poster_path')
-  final String posterPath;
-  final String overview;
+  final String? posterPath;
+  final String? overview;
 
   MovieResponse(
       {required this.backdropPath,

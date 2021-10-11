@@ -19,7 +19,11 @@ class MovieDbRepositoryImpl implements MovieDbRepository {
     try {
       var response = await movieDbRemoteDatasource.getNowPlaying();
       var listMovie = response.results;
-      return Right(mapper.mapToListDomain(listMovie));
+      if (listMovie != null) {
+        return Right(mapper.mapToListDomain(listMovie));
+      } else {
+        return Left(ServerFailure("list movie null"));
+      }
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }

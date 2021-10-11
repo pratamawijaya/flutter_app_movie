@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_news_app_playground/data/datasources/remote/services/api_key_interceptor.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   late Dio _dio;
@@ -26,5 +27,6 @@ class DioClient {
 
   void initInterceptors() {
     _dio.interceptors.add(ApiKeyInterceptor());
+    _dio.interceptors.add(PrettyDioLogger());
   }
 }

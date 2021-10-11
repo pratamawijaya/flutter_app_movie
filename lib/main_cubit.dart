@@ -12,8 +12,15 @@ class MainCubit extends Cubit<MainState> {
   MainCubit(this._getNowPlayingMovieUseCase) : super(MainInitial());
 
   Future<void> getNowPlaying() async {
+    print("get now playing cubit");
     emit(Loading());
     final data = await _getNowPlayingMovieUseCase.call(NoParams());
-    data.fold((l) => emit(Error("failed to get data")), (r) => Loaded(r));
+    print("data is left? ${data.isLeft()}");
+    data.fold((l) => emit(Error("failed to get data")), (r) => process(r));
+  }
+
+  void process(List<Movie> r) {
+    print("hasil length : ${r.length}");
+    emit(Loaded(r));
   }
 }
