@@ -1,7 +1,14 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'movie_response.g.dart';
+
+@JsonSerializable()
 class MovieResponse {
+  @JsonKey(name: 'backdrop_path')
   final String backdropPath;
   final int id;
   final String title;
+  @JsonKey(name: 'poster_path')
   final String posterPath;
   final String overview;
 
@@ -12,12 +19,8 @@ class MovieResponse {
       required this.posterPath,
       required this.overview});
 
-  factory MovieResponse.fromJson(Map<String, dynamic> json) {
-    return MovieResponse(
-        backdropPath: json["backdrop_path"],
-        id: json["id"],
-        title: json["title"],
-        posterPath: json["poster_path"],
-        overview: json["overview"]);
-  }
+  factory MovieResponse.fromJson(Map<String, dynamic> json) =>
+      _$MovieResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MovieResponseToJson(this);
 }
