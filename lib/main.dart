@@ -37,28 +37,37 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<MainCubit>(context).getNowPlaying();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Testing"),
-      ),
-      body: Center(
-        child: BlocBuilder<MainCubit, MainState>(
-          builder: (context, state) {
-            if (state is Loading) {
-              return const CircularProgressIndicator();
-            } else if (state is Loaded) {
-              final movie = state.movie;
-              return Column(
-                children: [
-                  Text("Title : ${movie.elementAt(0).title}"),
-                  Text("backdrop : ${movie.elementAt(0).poster}")
-                ],
-              );
-            } else {
-              return const Text("");
-            }
-          },
+    return BlocProvider(
+      create: (context) => sl.get<MainCubit>(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Testing"),
+        ),
+        body: Center(
+          child: BlocBuilder<MainCubit, MainState>(
+            builder: (context, state) {
+              if (state is Loading) {
+                return const CircularProgressIndicator();
+              } else if (state is Loaded) {
+                final movie = state.movie;
+                return Column(
+                  children: [
+                    Text("Title : ${movie.elementAt(0).title}"),
+                    Text("backdrop : ${movie.elementAt(0).poster}")
+                  ],
+                );
+              } else {
+                return const Text("");
+              }
+            },
+          ),
         ),
       ),
     );
