@@ -1,3 +1,3 @@
-abstract class MovieDbLocalDatasource {
-  
-}
+abstract class MovieDbLocalDatasource {}
+
+class MovieDbLocalDatasourceImpl extends MovieDbLocalDatasource {}
