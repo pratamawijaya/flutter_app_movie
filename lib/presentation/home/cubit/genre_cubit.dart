@@ -8,6 +8,7 @@ part 'genre_state.dart';
 
 class GenreCubit extends Cubit<GenreState> {
   final GetGenre _getGenreUseCase;
+  int selectedGenre = 0;
 
   GenreCubit(this._getGenreUseCase) : super(GenreInitial());
 
@@ -16,5 +17,10 @@ class GenreCubit extends Cubit<GenreState> {
     final data = await _getGenreUseCase.call(NoParams());
     data.fold(
         (l) => emit(GenreError(l.toString())), (r) => emit(GenreLoaded(r)));
+  }
+
+  selectGenre(int id) {
+    print("selected genre -> $id");
+    selectedGenre = id;
   }
 }

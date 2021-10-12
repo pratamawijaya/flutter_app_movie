@@ -22,4 +22,5 @@ class MainCubit extends Cubit<MainState> {
     print("hasil length : ${r.length}");
     emit(Loaded(r));
   }
+
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_app_playground/domain/entities/movie.dart';
 import 'package:flutter_news_app_playground/main_cubit.dart';
+import 'package:flutter_news_app_playground/presentation/genre/category_widget.dart';
+import 'package:flutter_news_app_playground/presentation/home/cubit/genre_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,7 +37,8 @@ class HomeScreen extends StatelessWidget {
               children: [
                 BlocBuilder<MainCubit, MainState>(
                     bloc: BlocProvider.of<MainCubit>(context)
-                      ..fetchNowPlaying(1), // call getNowPlaying when init state
+                      ..fetchNowPlaying(1),
+                    // call getNowPlaying when init state
                     builder: (context, state) {
                       if (state is Loading) {
                         return const Center(
@@ -131,19 +134,5 @@ class HomeScreen extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class BuildCategoryWidget extends StatefulWidget {
-  const BuildCategoryWidget({Key? key}) : super(key: key);
-
-  @override
-  _BuildCategoryWidgetState createState() => _BuildCategoryWidgetState();
-}
-
-class _BuildCategoryWidgetState extends State<BuildCategoryWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

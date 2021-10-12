@@ -4,6 +4,7 @@ import 'package:flutter_news_app_playground/di/injection_container.dart' as di;
 import 'package:flutter_news_app_playground/di/injection_container.dart';
 import 'package:flutter_news_app_playground/domain/entities/movie.dart';
 import 'package:flutter_news_app_playground/main_cubit.dart';
+import 'package:flutter_news_app_playground/presentation/home/cubit/genre_cubit.dart';
 import 'package:flutter_news_app_playground/presentation/home/home_screen.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -23,8 +24,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BlocProvider(
-        create: (context) => sl.get<MainCubit>(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => sl.get<MainCubit>()),
+          BlocProvider(create: (context) => sl.get<GenreCubit>())
+        ],
         child: const HomeScreen(),
       ),
     );

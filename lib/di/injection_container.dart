@@ -8,6 +8,7 @@ import 'package:flutter_news_app_playground/domain/repositories/movie_db_reposit
 import 'package:flutter_news_app_playground/domain/usecases/get_genre.dart';
 import 'package:flutter_news_app_playground/domain/usecases/get_now_playing.dart';
 import 'package:flutter_news_app_playground/main_cubit.dart';
+import 'package:flutter_news_app_playground/presentation/home/cubit/genre_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -15,6 +16,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   // cubit
   sl.registerFactory(() => MainCubit(sl()));
+  sl.registerFactory(() => GenreCubit(sl()));
 
   // mapper
   sl.registerLazySingleton(() => MovieMapper());
