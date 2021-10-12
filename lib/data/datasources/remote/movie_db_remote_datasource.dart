@@ -8,6 +8,8 @@ abstract class MovieDbRemoteDatasource {
   Future<NowPlayingResponse> getNowPlaying(int page);
 
   Future<GenreResponse> getGenre();
+
+  Future<NowPlayingResponse> getMovieByGenre(String genre);
 }
 
 class MovieDbRemoteDatasourceImpl implements MovieDbRemoteDatasource {
@@ -38,6 +40,17 @@ class MovieDbRemoteDatasourceImpl implements MovieDbRemoteDatasource {
 
     if (response.statusCode == 200) {
       GenreResponse result = GenreResponse.fromJson(response.data);
+      return result;
+    } else {
+      throw ServerException(response.statusMessage);
+    }
+  }
+
+  @override
+  Future<NowPlayingResponse> getMovieByGenre(String genre) async {
+    var response = await _httpClient.getRequest(NewsApi.GENRE);
+    if (response.statusCode == 200) {
+      NowPlayingResponse result = NowPlayingResponse.fromJson(response.data);
       return result;
     } else {
       throw ServerException(response.statusMessage);

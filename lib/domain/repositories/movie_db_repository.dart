@@ -7,4 +7,6 @@ abstract class MovieDbRepository {
   Future<Either<Failure, List<Movie>>> getNowPlayingMovie(int page);
 
   Future<Either<Failure, List<Genre>>> getGenre();
+
+  Future<Either<Failure, List<Movie>>> getMovieByGenre(String genre);
 }

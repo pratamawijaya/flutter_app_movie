@@ -47,4 +47,20 @@ class MovieDbRepositoryImpl implements MovieDbRepository {
       return Left(ServerFailure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getMovieByGenre(String genre) async {
+    try {
+      var response = await movieDbRemoteDatasource.getMovieByGenre(genre);
+      var listResult = response.results;
+
+      if (listResult != null) {
+        return Right(movieMapper.mapToListDomain(listResult));
+      } else {
+        return Left(ServerFailure("list genre null"));
+      }
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    }
+  }
 }
