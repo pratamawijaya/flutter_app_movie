@@ -5,6 +5,13 @@ abstract class MainState {}
 
 class MainInitial extends MainState {}
 
+class GetMovieEvent extends MainState {
+  final List<Movie> movies;
+  final int page;
+
+  GetMovieEvent(this.movies, this.page);
+}
+
 class Loading extends MainState {}
 
 class Error extends MainState {

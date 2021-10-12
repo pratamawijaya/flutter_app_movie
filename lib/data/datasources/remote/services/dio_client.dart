@@ -14,10 +14,14 @@ class DioClient {
     initInterceptors();
   }
 
-  Future<Response> getRequest(String endpoint) async {
+  Future<Response> getRequest(String url,
+      {Map<String, dynamic>? queryParameters}) async {
     Response response;
     try {
-      response = await _dio.get(endpoint);
+      response = await _dio.get(
+        url,
+        queryParameters: queryParameters,
+      );
     } on DioError catch (e) {
       print(e.message);
       throw Exception(e.message);

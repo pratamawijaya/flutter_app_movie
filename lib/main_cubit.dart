@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_news_app_playground/core/usecase/usecase.dart';
 import 'package:flutter_news_app_playground/domain/entities/movie.dart';
 import 'package:flutter_news_app_playground/domain/usecases/get_now_playing.dart';
 import 'package:meta/meta.dart';
@@ -11,10 +10,10 @@ class MainCubit extends Cubit<MainState> {
 
   MainCubit(this._getNowPlayingMovieUseCase) : super(MainInitial());
 
-  Future<void> getNowPlaying() async {
-    print("get now playing cubit");
+  Future<void> fetchNowPlaying(int page) async {
+    print("get now playing cubit $page");
     emit(Loading());
-    final data = await _getNowPlayingMovieUseCase.call(NoParams());
+    final data = await _getNowPlayingMovieUseCase.call(NowPlayingParams(page));
     print("data is left? ${data.isLeft()}");
     data.fold((l) => emit(Error("failed to get data")), (r) => process(r));
   }
