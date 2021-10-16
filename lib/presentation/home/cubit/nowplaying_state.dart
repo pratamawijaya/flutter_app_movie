@@ -1,4 +1,5 @@
-part of 'main_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_news_app_playground/domain/entities/movie.dart';
 
 @immutable
 abstract class MainState {}

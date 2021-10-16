@@ -3,9 +3,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_news_app_playground/domain/entities/movie.dart';
-import 'package:flutter_news_app_playground/main_cubit.dart';
+import 'package:flutter_news_app_playground/presentation/home/cubit/nowplaying_cubit.dart';
 import 'package:flutter_news_app_playground/presentation/genre/category_widget.dart';
-import 'package:flutter_news_app_playground/presentation/home/cubit/genre_cubit.dart';
+import 'package:flutter_news_app_playground/presentation/home/cubit/nowplaying_state.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -42,6 +42,7 @@ class HomeScreen extends StatelessWidget {
                     builder: (context, state) {
                       if (state is Loading) {
                         return const Center(
+
                           child: CircularProgressIndicator(),
                         );
                       } else if (state is Loaded) {

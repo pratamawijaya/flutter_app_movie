@@ -7,7 +7,7 @@ import 'package:flutter_news_app_playground/data/repositories/movie_db_repositor
 import 'package:flutter_news_app_playground/domain/repositories/movie_db_repository.dart';
 import 'package:flutter_news_app_playground/domain/usecases/get_genre.dart';
 import 'package:flutter_news_app_playground/domain/usecases/get_now_playing.dart';
-import 'package:flutter_news_app_playground/main_cubit.dart';
+import 'package:flutter_news_app_playground/presentation/home/cubit/nowplaying_cubit.dart';
 import 'package:flutter_news_app_playground/presentation/home/cubit/genre_cubit.dart';
 import 'package:get_it/get_it.dart';
 
